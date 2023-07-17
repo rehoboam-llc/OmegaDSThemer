@@ -2,3 +2,14 @@
 *.log
 *.log.*
 node_modules
+
+.vscode/
+images/
+src/
+.env
+package-lock.json
+package.json
+tsconfig.json
+tslint.json
+ui.html
+webpack.config.js
