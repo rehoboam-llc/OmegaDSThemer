@@ -1,5 +1,5 @@
 {
-    "name": "OmegaDSDev",
+    "name": "OmegaDSSwitcher",
     "version": "1.0.0",
     "description": "A plugin for commiting design tokens to GitHub",
     "main": "code.js",
