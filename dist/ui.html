@@ -213,26 +213,31 @@
         if (event.data.pluginMessage.type === 'stop-loading') {
             document.getElementById('content').classList.remove('hide')
             document.getElementById('switch-theme').classList.remove('hide')
+            document.getElementById('loading').classList.add('hide')
         }
 
         if (event.data.pluginMessage.type === 'token-needed') {
             let onboarding = document.getElementById('onboarding')
             let provide_token_button = document.getElementById('provide-token')
             let switch_theme_button = document.getElementById('switch-theme')
+            let loading = document.getElementById('loading')
 
             onboarding.classList.remove('hide')
             provide_token_button.classList.remove('hide')
             switch_theme_button.classList.add('hide')
+            loading.classList.add('hide')
         }
 
         if (event.data.pluginMessage.type === 'loading') {
             let onboarding = document.getElementById('onboarding')
             let provide_token_button = document.getElementById('provide-token')
             let switch_theme_button = document.getElementById('switch-theme')
+            let loading = document.getElementById('loading')
 
             onboarding.classList.add('hide')
             provide_token_button.classList.add('hide')
             switch_theme_button.classList.add('hide')
+            loading.classList.remove('hide')
         }
 
     }
@@ -243,6 +248,7 @@
 
     document.getElementById('provide-token').onclick = () => {
         let token = document.getElementById('token').value.toString();
+        console.log(token)
         parent.postMessage({ pluginMessage: { type: 'provide-token', token: token } }, '*')
     }
 </script>

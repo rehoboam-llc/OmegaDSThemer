@@ -25,8 +25,6 @@ export const checkOmegaDSAvailable = async () => {
     if (!omegaFound) {
         figma.ui.postMessage({type: 'omega-needed'})
     }
-
-
 };
 
 export async function fetchJSONColors(token: String) {
@@ -67,10 +65,10 @@ export function changeDeep(node: any, colorsMapGlobal: ColorsMap) {
 
     let as_frame_node = node as FrameNode;
 
-    let fillStyleId = as_frame_node.fillStyleId.toString();
-    let strokeStyleId = as_frame_node.strokeStyleId.toString();
+    let fillStyleId = as_frame_node.fillStyleId;
+    let strokeStyleId = as_frame_node.strokeStyleId;
 
-    let oldFillStyle = figma.getStyleById(fillStyleId);
+    let oldFillStyle = figma.getStyleById(fillStyleId.toString());
     let oldStrokeStyle = figma.getStyleById(strokeStyleId);
 
     if (oldFillStyle) {
@@ -101,6 +99,7 @@ export function changeDeep(node: any, colorsMapGlobal: ColorsMap) {
                         console.log('Error while setting a fill style: ', err)
                     }
                 })
+                .catch(err => err)
         }
     }
 
@@ -129,6 +128,7 @@ export function changeDeep(node: any, colorsMapGlobal: ColorsMap) {
                         console.log('Error while setting a fill style: ', err)
                     }
                 })
+                .catch(err => err)
         }
 
     }

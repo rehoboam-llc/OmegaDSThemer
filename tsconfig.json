@@ -20,7 +20,7 @@
       "./node_modules/@types",
       "./node_modules/@figma",
     ],
-    "outDir": "omega-switcher",
+    "outDir": "dist",
     "jsx": "react",
     "allowJs": true,
     "moduleResolution": "node"

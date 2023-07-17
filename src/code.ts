@@ -1,6 +1,5 @@
 import {
     ColorsMap,
-    checkOmegaDSAvailable,
     fetchJSONColors,
     changeDeep,
     loadTeamPaintStyles
@@ -9,15 +8,11 @@ import {
 figma.showUI(__html__, { width: 380, height: 340, themeColors: true });
 
 let colorsMapGlobal: ColorsMap = {};
-let localMap: ColorsMap = {}
-
-// checkOmegaDSAvailable()
 
 const loadColorStyles = (token: String) => {
     fetchJSONColors(token)
         .then((file: ColorsMap) => {
             colorsMapGlobal = file;
-            // localMap = loadTeamPaintStyles(colorsMapGlobal);
             figma.ui.postMessage({
                 type: 'stop-loading'
             });

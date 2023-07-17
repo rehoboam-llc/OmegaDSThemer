@@ -2,13 +2,13 @@
     "name": "Omega DS Switcher",
     "id": "1260964467143576573",
     "api": "1.0.0",
-    "main": "omega-switcher/code.js",
+    "main": "dist/code.js",
     "capabilities": [],
     "enableProposedApi": false,
     "editorType": [
         "figma"
     ],
-    "ui": "omega-switcher/ui.html",
+    "ui": "ui.html",
     "permissions": [
         "currentuser",
         "teamlibrary"

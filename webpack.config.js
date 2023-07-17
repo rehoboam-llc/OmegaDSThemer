@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const Dotenv = require('dotenv-webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = (env, argv) => ({
     mode: argv.mode === 'production' ? 'production' : 'development',
@@ -31,7 +32,12 @@ module.exports = (env, argv) => ({
     },
     output: {
         filename: '[name].js',
-        path: path.resolve(__dirname, 'omega-switcher'),
+        path: path.resolve(__dirname, 'dist'),
+    },
+
+    devServer: {
+        watchFiles: ["*.html"],
+        hot: true,
     },
 
     plugins: [
