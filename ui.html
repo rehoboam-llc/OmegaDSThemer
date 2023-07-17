@@ -218,6 +218,13 @@
             document.getElementById('warning').classList.add('hide')
         }
 
+        if (event.data.pluginMessage.type === 'omega-needed') {
+            document.getElementById('content').classList.add('hide')
+            document.getElementById('lib-img').classList.remove('hide')
+            document.getElementById('warning').classList.remove('hide')
+            document.getElementById('switch-theme').classList.add('hide')
+        }
+
         if (event.data.pluginMessage.type === 'stop-loading') {
             document.getElementById('content').classList.remove('hide')
             document.getElementById('switch-theme').classList.remove('hide')
