@@ -8,7 +8,7 @@
     "editorType": [
         "figma"
     ],
-    "ui": "ui.html",
+    "ui": "omega-switcher/ui.html",
     "permissions": [
         "currentuser",
         "teamlibrary"
