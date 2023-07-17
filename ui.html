@@ -115,6 +115,32 @@
         width: 320px;
     }
 
+    label {
+        width: 100%;
+        font-size: 12px;
+    }
+
+    input {
+        padding: 12px 8px 12px 0;
+        width: 100% !important;
+        border: none;
+        border-bottom: solid 1px var(--figma-color-border);
+        color: var(--figma-color-text);
+        outline: none;
+        font-size: 11px;
+        width: 100%;
+        height: 32px;
+        border-radius: 0;
+    }
+
+    input:focus {
+        border-bottom-color: var(--figma-color-border-selected);
+    }
+
+    input::placeholder {
+        color: var(--figma-color-text-tertiary);
+    }
+
     @keyframes blink-text {
         0% {
             opacity: 0;
@@ -149,17 +175,22 @@
             </defs>
         </svg>
         <h2>Omega DS Switcher</h2>
+        <div id="onboarding" class="layout-flex v-stack hide">
+            <p class="description">
+                Чтобы плагин заработал — введите персональный токен. Его можно
+                найти в руководстве Omega DS.
+            </p>
+            <input id="token" placeholder="Ваш персональный токен" />
+        </div>
+
         <div id="content" class="layout-flex v-stack hide">
             <p class="description">
                 Переключайте цветовые темы в&nbsp;макетах, собранных на&nbsp;Omega&nbsp;DS. Чтобы всё работало&nbsp;—
-                убедитесь, что используете стили Omega.
-            </p>
-            <p class="description">
-                Выберите нужный компонент или&nbsp;фрейм и&nbsp;нажмите «Сменить цветовую тему»
+                убедитесь, что используете стили Omega DS.
             </p>
         </div>
 
-        <div id="warning" class="layout-flex v-stack">
+        <div id="warning" class="layout-flex v-stack hide">
             <p class="description text-danger">
                 Кажется, вы не используете Omega DS. Сначала подключите библиотеку omg-tokens
             </p>
@@ -167,10 +198,12 @@
 
     </div>
     <button class="hide" id="switch-theme">Изменить тему</button>
-    <div id="loading" class="loading">
+    <button class="hide" id="provide-token">Сохранить токен</button>
+
+    <div id="loading" class="loading hide">
         <p class="description">Грузим стили из библиотеки...</p>
     </div>
-    <img id="lib-img" class="lib-img"
+    <img id="lib-img" class="lib-img hide"
         src="data:image/png;base64,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" />
 </div>
 
@@ -182,9 +215,34 @@
             document.getElementById('warning').classList.add('hide')
         }
 
-        else if (event.data.pluginMessage.type === 'stop-loading') {
+        if (event.data.pluginMessage.type === 'stop-loading') {
+            document.getElementById('content').classList.remove('hide')
             document.getElementById('switch-theme').classList.remove('hide')
             document.getElementById('loading').classList.add('hide')
+        }
+
+        if (event.data.pluginMessage.type === 'token-needed') {
+            let onboarding = document.getElementById('onboarding')
+            let provide_token_button = document.getElementById('provide-token')
+            let switch_theme_button = document.getElementById('switch-theme')
+            let loading = document.getElementById('loading')
+
+            onboarding.classList.remove('hide')
+            provide_token_button.classList.remove('hide')
+            switch_theme_button.classList.add('hide')
+            loading.classList.add('hide')
+        }
+
+        if (event.data.pluginMessage.type === 'loading') {
+            let onboarding = document.getElementById('onboarding')
+            let provide_token_button = document.getElementById('provide-token')
+            let switch_theme_button = document.getElementById('switch-theme')
+            let loading = document.getElementById('loading')
+
+            onboarding.classList.add('hide')
+            provide_token_button.classList.add('hide')
+            switch_theme_button.classList.add('hide')
+            loading.classList.remove('hide')
         }
 
         // else if (event.data.pluginMessage.type === 'working') {
@@ -209,7 +267,13 @@
         // }
 
     }
+
     document.getElementById('switch-theme').onclick = () => {
         parent.postMessage({ pluginMessage: { type: 'switch-theme' } }, '*')
     }
+
+    document.getElementById('provide-token').addEventListener('onclick', () => {
+        let token = document.getElementById('token').value.toString();
+        parent.postMessage({ pluginMessage: { type: 'provide-token', token: token } }, '*')
+    })
 </script>

@@ -19,8 +19,7 @@ export const checkOmegaDSAvailable = async () => {
     }
 };
 
-export async function fetchJSONColors() {
-    let token = process.env.REACT_APP_GITHUB_TOKEN;
+export async function fetchJSONColors(token: String) {
     let owner = 'rehoboam-llc'
     let repo = 'omega'
     let path = 'omegaColors.json'
