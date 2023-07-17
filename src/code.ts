@@ -8,8 +8,6 @@ import {
 
 figma.showUI(__html__, { width: 380, height: 340, themeColors: true });
 
-// checkOmegaDSAvailable()
-
 let colorsMapGlobal: ColorsMap = {};
 let localMap: ColorsMap = {}
 
@@ -38,23 +36,23 @@ figma.clientStorage.getAsync('token')
 figma.ui.onmessage = msg => {
     if (msg.type === 'switch-theme') {
         figma.clientStorage.getAsync('token')
-                .then(token => {
-                    if (token !== undefined) {
-                        let selection = figma.currentPage.selection;
-                    
-                        if (selection.length > 0) {
-                            for (const selected of selection) {
-                                changeDeep(selected, colorsMapGlobal)
-                            }
-        
-                        } else {
-                            figma.notify("Выберите компонент или фрейм, в котором нужно переключить тему. Можно сразу несколько 😮", { error: true })
+            .then(token => {
+                if (token !== undefined) {
+                    let selection = figma.currentPage.selection;
+                
+                    if (selection.length > 0) {
+                        for (const selected of selection) {
+                            changeDeep(selected, colorsMapGlobal)
                         }
-
+    
                     } else {
-                        figma.notify("Введите ваш персональный токен. Его можно найти в руководстве Omega DS", { error: true })
+                        figma.notify("Выберите компонент или фрейм, в котором нужно переключить тему. Можно сразу несколько 😮", { error: true })
                     }
-                })
+
+                } else {
+                    figma.notify("Введите ваш персональный токен. Его можно найти в руководстве Omega DS", { error: true })
+                }
+            })
     }
 
     if (msg.type === 'provide-token') {

@@ -188,6 +188,9 @@
                 Переключайте цветовые темы в&nbsp;макетах, собранных на&nbsp;Omega&nbsp;DS. Чтобы всё работало&nbsp;—
                 убедитесь, что используете стили Omega DS.
             </p>
+            <p class="description">
+                Выберите компонент или фрейм и нажмите «Изменить тему»
+            </p>
         </div>
 
         <div id="warning" class="layout-flex v-stack hide">
@@ -245,35 +248,15 @@
             loading.classList.remove('hide')
         }
 
-        // else if (event.data.pluginMessage.type === 'working') {
-        //     let notification = document.getElementById('loading')
-        //     let button = document.getElementById('switch-theme')
-
-        //     button.classList.add('hide')
-        //     button.disabled = true
-            
-        //     notification.getElementsByTagName('p')[0].innerHTML = 'Меняем стили...'
-        //     notification.classList.remove('hide')
-        // }
-
-        // else if (event.data.pluginMessage.type === 'stop-working') {
-        //     let notification = document.getElementById('loading')
-        //     let button = document.getElementById('switch-theme')
-
-        //     button.classList.remove('hide')
-        //     button.disabled = false
-        //     notification.getElementsByTagName('p')[0].innerHTML = 'Грузим стили из библиотеки...'
-        //     notification.classList.add('hide')
-        // }
-
     }
 
     document.getElementById('switch-theme').onclick = () => {
         parent.postMessage({ pluginMessage: { type: 'switch-theme' } }, '*')
     }
 
-    document.getElementById('provide-token').addEventListener('onclick', () => {
+    document.getElementById('provide-token').onclick = () => {
         let token = document.getElementById('token').value.toString();
+        console.log(token)
         parent.postMessage({ pluginMessage: { type: 'provide-token', token: token } }, '*')
-    })
+    }
 </script>

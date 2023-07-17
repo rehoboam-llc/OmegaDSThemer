@@ -6,6 +6,9 @@ export interface ColorsMap {
 
 // Check if the Omega DS library is available in the Figma file
 export const checkOmegaDSAvailable = async () => {
+
+    figma.ui.postMessage({type: 'omega-needed'})
+
     let teamLibVars = await figma.teamLibrary.getAvailableLibraryVariableCollectionsAsync();
 
     for (const lib of teamLibVars) {
