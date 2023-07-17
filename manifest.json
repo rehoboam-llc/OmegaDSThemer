@@ -2,7 +2,7 @@
     "name": "Omega DS Switcher",
     "id": "1260964467143576573",
     "api": "1.0.0",
-    "main": "dist/code.js",
+    "main": "omega-switcher/code.js",
     "capabilities": [],
     "enableProposedApi": false,
     "editorType": [
