@@ -1,0 +1,23 @@
+{
+    "name": "Omega DS Switcher",
+    "id": "1260964467143576573",
+    "api": "1.0.0",
+    "main": "dist/code.js",
+    "capabilities": [],
+    "enableProposedApi": false,
+    "editorType": [
+        "figma"
+    ],
+    "ui": "ui.html",
+    "permissions": [
+        "currentuser",
+        "teamlibrary"
+    ],
+    "networkAccess": {
+        "allowedDomains": [
+            "https://api.github.com",
+            "https://fonts.googleapis.com",
+            "https://fonts.gstatic.com"
+        ]
+    }
+}

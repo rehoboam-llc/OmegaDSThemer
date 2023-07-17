@@ -1,0 +1,32 @@
+{
+    "name": "OmegaDSDev",
+    "version": "1.0.0",
+    "description": "A plugin for commiting design tokens to GitHub",
+    "main": "code.js",
+    "scripts": {
+        "build": "webpack",
+        "watch": "npm run build -- --watch"
+    },
+    "author": "Alex Firssoff",
+    "license": "",
+    "devDependencies": {
+        "@figma/plugin-typings": "*",
+		"@types/bcryptjs": "^2.4.2",
+        "dotenv-webpack": "^8.0.1",
+		"ts-loader": "^9.4.4",
+		"typescript": "^5.1.6",
+		"webpack": "^5.88.1",
+		"webpack-cli": "^5.1.4"
+    },
+    "dependencies": {
+        "@types/node": "^20.4.1",
+		"bcryptjs": "^2.4.3",
+		"buffer": "^6.0.3",
+		"crypto": "^1.0.1",
+		"dotenv": "^16.3.1",
+		"process": "^0.11.10"
+    },
+    "browser": {
+        "stream": "stream-browserify"
+    }
+}
