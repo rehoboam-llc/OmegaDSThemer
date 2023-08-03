@@ -68,76 +68,83 @@ export function changeDeep(node: any, colorsMapGlobal: ColorsMap) {
     let fillStyleId = as_frame_node.fillStyleId;
     let strokeStyleId = as_frame_node.strokeStyleId;
 
-    let oldFillStyle = figma.getStyleById(fillStyleId.toString());
-    let oldStrokeStyle = figma.getStyleById(strokeStyleId);
+    if (fillStyleId !== undefined && strokeStyleId !== undefined) {
+        let oldFillStyle = figma.getStyleById(fillStyleId.toString());
+        let oldStrokeStyle = figma.getStyleById(strokeStyleId);
 
-    if (oldFillStyle) {
-        let fillName = oldFillStyle!.name;
+        if (oldFillStyle) {
+            let fillName = oldFillStyle!.name;
 
-        let newFillName = fillName;
+            let newFillName = fillName;
 
-        if (fillName.startsWith('light/')) {
-            newFillName = fillName.replace('light/', 'dark/');
+            if (fillName.startsWith('light/')) {
+                newFillName = fillName.replace('light/', 'dark/');
 
-        } else if (fillName.startsWith('dark/')) {
+            } else if (fillName.startsWith('dark/')) {
 
-            newFillName = fillName.replace('dark/', 'light/');
+                newFillName = fillName.replace('dark/', 'light/');
+            }
+
+            let newFill = colorsMapGlobal[newFillName];
+
+            if (newFill !== undefined) {
+                let newFillKey = newFill;
+                if (newFillKey !== undefined) {
+                    figma.importStyleByKeyAsync(newFillKey.toString())
+                        .then(style => {
+                            let styleId = style.id;
+
+                            try {
+                                as_frame_node.fillStyleId = styleId.toString();
+
+                            } catch (err) {
+                                console.log('Error while setting a fill style: ', err)
+                            }
+                        })
+                        .catch(err => err)
+                }
+            }
         }
 
-        let newFill = colorsMapGlobal[newFillName];
+        if (oldStrokeStyle) {
+            let strokeName = oldStrokeStyle!.name;
+            let newStrokeName = strokeName;
 
-        if (newFill) {
-            let newFillKey = newFill;
-            figma.importStyleByKeyAsync(newFillKey.toString())
-                .then(style => {
-                    let styleId = style.id;
+            if (strokeName.startsWith('light/')) {
+                newStrokeName = strokeName.replace('light/', 'dark/');
 
-                    try {
-                        as_frame_node.fillStyleId = styleId.toString();
+            } else if (strokeName.startsWith('dark/')) {
+                newStrokeName = strokeName.replace('dark/', 'light/');
+            }
 
-                    } catch (err) {
-                        console.log('Error while setting a fill style: ', err)
-                    }
-                })
-                .catch(err => err)
-        }
-    }
+            let newStroke = colorsMapGlobal[newStrokeName];
 
-    if (oldStrokeStyle) {
-        let strokeName = oldStrokeStyle!.name;
-        let newStrokeName = strokeName;
+            if (newStroke !== undefined) {
+                let newStrokeKey = newStroke;
 
-        if (strokeName.startsWith('light/')) {
-            newStrokeName = strokeName.replace('light/', 'dark/');
+                if (newStrokeKey !== undefined) {
+                    figma.importStyleByKeyAsync(newStrokeKey.toString())
+                        .then(style => {
+                            let styleId = style.id;
 
-        } else if (strokeName.startsWith('dark/')) {
-            newStrokeName = strokeName.replace('dark/', 'light/');
-        }
+                            try {
+                                as_frame_node.strokeStyleId = styleId.toString();
+                            } catch (err) {
+                                console.log('Error while setting a fill style: ', err)
+                            }
+                        })
+                        .catch(err => err)
+                }
+            }
 
-        let newStroke = colorsMapGlobal[newStrokeName];
-
-        if (newStroke) {
-            let newStrokeKey = newStroke;
-            figma.importStyleByKeyAsync(newStrokeKey.toString())
-                .then(style => {
-                    let styleId = style.id;
-
-                    try {
-                        as_frame_node.strokeStyleId = styleId.toString();
-                    } catch (err) {
-                        console.log('Error while setting a fill style: ', err)
-                    }
-                })
-                .catch(err => err)
         }
 
-    }
+        let children = as_frame_node.children;
 
-    let children = as_frame_node.children;
-
-    if (children) {
-        for (const child of children) {
-            changeDeep(child, colorsMapGlobal)
+        if (children) {
+            for (const child of children) {
+                changeDeep(child, colorsMapGlobal)
+            }
         }
     }
 }

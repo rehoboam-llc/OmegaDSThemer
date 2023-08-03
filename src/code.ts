@@ -7,6 +7,8 @@ import {
 
 figma.showUI(__html__, { width: 380, height: 340, themeColors: true });
 
+// figma.clientStorage.deleteAsync('token')
+
 let colorsMapGlobal: ColorsMap = {};
 
 const loadColorStyles = (token: String) => {
