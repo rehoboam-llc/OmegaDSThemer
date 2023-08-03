@@ -5,7 +5,7 @@ import {
     loadTeamPaintStyles
 } from "./funcs";
 
-figma.showUI(__html__, { width: 380, height: 340, themeColors: true });
+figma.showUI(__html__, { width: 380, height: 400, themeColors: true });
 
 // figma.clientStorage.deleteAsync('token')
 

@@ -10,6 +10,16 @@
         text-align: left;
     }
 
+    a {
+        color: var(--figma-color-text-brand);
+        text-decoration: none;
+        border-bottom: solid 1px var(--figma-color-border-brand);
+    }
+
+    a:hover {
+        border-bottom: solid 1px var(--figma-color-text-brand);
+    }
+
     p.description {
         padding: 0;
         margin: 0;
@@ -40,7 +50,7 @@
 
     .v-stack {
         flex-direction: column;
-        align-items: flex-start;
+        /* align-items: flex-start; */
         row-gap: 12px;
     }
 
@@ -48,7 +58,7 @@
         align-self: center;
         justify-content: space-between;
         width: 320px;
-        height: 270px;
+        height: 320px;
     }
 
     label {
@@ -141,9 +151,16 @@
         color: var(--figma-color-text-tertiary);
     }
 
+    p.update {
+        font-size: 11px;
+        animation: blink-text 1.9s linear infinite;
+        padding: 0;
+        margin: 0;
+    }
+
     @keyframes blink-text {
         0% {
-            opacity: 0;
+            opacity: .4;
         }
 
         50% {
@@ -151,7 +168,7 @@
         }
 
         100% {
-            opacity: 0;
+            opacity: .4;
         }
     }
 </style>
@@ -176,20 +193,21 @@
         </svg>
         <h2>Omega DS Switcher</h2>
         <div id="onboarding" class="layout-flex v-stack hide">
-            <p class="description hide">
+            <p class="description">
                 Чтобы плагин заработал — введите персональный токен. Его можно
-                найти в руководстве Omega DS.
+                найти <a href="https://www.figma.com/file/CdltwQRSK0kgym24ahrocM/00-Omega-Cookbook-%CE%B2?type=design&node-id=714-7665&mode=design&t=1ny2zr96zaahCoRG-4" target="_blank">в&nbsp;руководстве Omega DS</a>.
             </p>
             <input id="token" placeholder="Ваш персональный токен" />
         </div>
 
         <div id="content" class="layout-flex v-stack hide">
+            <p class="update">Версия v0.2 | <a href="https://github.com/rehoboam-llc/OmegaDSThemer/releases" target="_blank">Проверить обновления</a></p>
             <p class="description">
                 Переключайте цветовые темы в&nbsp;макетах, собранных на&nbsp;Omega&nbsp;DS. Чтобы всё работало&nbsp;—
                 убедитесь, что используете стили Omega DS.
             </p>
             <p class="description">
-                Выберите компонент или фрейм и нажмите «Изменить тему»
+                Выберите компонент или фрейм (можно несколько) и нажмите «Изменить тему»
             </p>
         </div>
 
